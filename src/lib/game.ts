@@ -138,12 +138,6 @@ export class MyGame extends Phaser.Scene {
 		const plugin = this.plugins.get('Movement');
 		const data = plugin?.getPlayer1();
 		if (data) {
-			this.player1?.setScale(1 + 2 * data.pitch, 1 + 2 * data.roll);
-			this.player1?.setRotation(this.player1?.rotation + data.roll);
-
-			this.player1?.setX(this.player1.x + 75 * data.x);
-			this.player1?.setY(this.player1.y + 75 * data.y);
-
 			if (data.buttonHome && !this.didclick) {
 				window.location.reload();
 				this.didclick = true;
@@ -152,6 +146,14 @@ export class MyGame extends Phaser.Scene {
 			}
 		}
 		if (this.player1) {
+			this.player1?.setScale(1 + 2 * data.pitch, 1 + 2 * data.roll);
+			this.player1?.setRotation(this.player1?.rotation + data.roll);
+
+			if (75 * data.x < 400 || 75 * data.x < 400) {
+				this.player1?.setX(this.player1.x + 75 * data.x);
+				this.player1?.setY(this.player1.y + 75 * data.y);
+			}
+
 			if (
 				this.player1.x < 0 ||
 				this.player1.x > settings.width ||
